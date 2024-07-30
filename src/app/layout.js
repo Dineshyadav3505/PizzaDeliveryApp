@@ -1,9 +1,5 @@
-import { Inter } from "next/font/google";
-
 import "./globals.css";
 import Layouts from "@/components/Layouts/Layouts"; 
-
-const inter = Inter({ subsets: ["latin"] });
 
 
 export const metadata = {
@@ -14,7 +10,7 @@ export const metadata = {
 
 export default function RootLayout({children}) {
   return (
-    <html lang="en" className={`${inter.className} `}>
+    <html lang="en">
       <body>
         <Layouts>
           {children}

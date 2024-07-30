@@ -2,7 +2,9 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='min-h-screen flex justify-center items-center'>signin</div>
+    <div className='min-h-screen flex w-screen justify-center items-center'>
+      signin
+    </div>
   )
 }
 

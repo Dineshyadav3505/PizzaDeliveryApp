@@ -7,8 +7,11 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-  },
-  plugins: [],
+    extend: {},
+    fontFamily:{
+      first: ['Noto Sans"', 'sans-serif'],
+      logo: ['Playwrite BE VLG', 'cursive'],
+    },
+    plugins: [],
   }
 };
