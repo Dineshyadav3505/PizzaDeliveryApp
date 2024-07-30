@@ -13,21 +13,31 @@ const Page = () => {
   };
 
   return (
-    <div className='flex w-screen justify-center items-center px-20 py-16'>
-      <div className="rounded-xl bg-zinc-900 w-full px-10 py-8 gap-3 space-y-4">
-        <h4 className='text-white font-first text-4xl font-light'>Create an account</h4>
+    <div className='flex w-full justify-center items-center px-2 py-10 lg:px-20 lg:py-16'>
+      <div className="rounded-xl bg-zinc-900 w-full px-6 lg:px-10 py-8 gap-3 space-y-4">
+        <h4 className='text-white font-first text-2xl lg:text-4xl font-light'>Create an account</h4>
         <h4 className='text-white font-first text-xs font-light'>
           Already have an account? <Link href="/login" className='text-blue-600 underline'>Login</Link>
         </h4>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input 
-            name="name" 
-            required={true} 
-            register={register}
-            placeholder="Name" 
-            className=""
-          />
+          <div className=" lg:flex gap-4">
+            <Input 
+              name="First name" 
+              required={true} 
+              register={register}
+              placeholder="First name" 
+              className=""
+            />
+            <Input 
+              name="Last name" 
+              required={true} 
+              register={register}
+              placeholder="Last name" 
+              className=""
+            />
+          </div>
+
           <Input 
             name="email" 
             type="email" 
