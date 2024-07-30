@@ -11,7 +11,11 @@ const Navbar = () => {
   return (
     <header>
         <div className="py-6 mx-auto px-7 flex items-center justify-between bg-zinc-900">
-            <Link href="/" >the Foodie cafe</Link>
+          {/* Logo and Name  */}
+            <Link href="/" className='flex gap-2 items-end'> 
+              <img className='w-8 overflow-hidden rounded-full' src="/img/logo.JPG" alt="" />
+              <h1 className='text-xl font-latin text-white'>Foodies Cafe</h1>
+            </Link>
 
             <div className="flex bg-red-700 ">
 
@@ -32,10 +36,10 @@ const Navbar = () => {
             </div>
 
             <div 
-            className={`absolute top-20 py-2 lg:hidden ${menu ? "w-[100%]" : 'w-[0%]'} duration-1000 right-0 bg-[#000000] h-56 w-full`}
+            className={`absolute top-20 py-2 lg:hidden ${menu == true ? "w-[100%]" : 'w-[0%]'} duration-1000 right-0 bg-[#000000] h-56 w-full`}
 
             >
-              <Buttom2 href='/' lable='home'/>
+              <Buttom2 href='/' lable='home' />
 
             </div>  
 
