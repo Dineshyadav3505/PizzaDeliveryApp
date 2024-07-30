@@ -32,3 +32,9 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Define the width of the scrollbar */
+*::-webkit-scrollbar {
+  width: 0px;
+}
+
