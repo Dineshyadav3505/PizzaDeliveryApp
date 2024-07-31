@@ -11,6 +11,8 @@ module.exports = {
     fontFamily:{
       first: ['Noto Sans"', 'sans-serif'],
       logo: ['Playwrite BE VLG', 'cursive'],
+      Ubuntu: ['Ubuntu', 'sans-serif'],
+      code: ['Encode Sans', 'sans-serif'],
     },
     plugins: [],
   }

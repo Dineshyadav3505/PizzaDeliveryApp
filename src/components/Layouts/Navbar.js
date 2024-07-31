@@ -11,7 +11,7 @@ const Navbar = () => {
   
   return (
     <header>
-        <div className="py-6 w-screen px-5 flex items-center overflow-x-hidden justify-between bg-[#000000]">
+        <div className="py-6 w-screen sticky px-5 flex items-center overflow-x-hidden justify-between bg-[#000000]">
           {/* Logo and Name  */}
             <Link href="/" className='flex gap-2 items-end select-none'> 
               <h1 className='text-xl font-logo text-white'>The Foodies Cafe</h1>
