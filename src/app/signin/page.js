@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '../../components/Button/Input'; // Adjust the path as necessary
+import Image from 'next/image';
 
 const Page = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -76,7 +77,7 @@ const Page = () => {
         </div>
 
         <div className="rounded-xl hidden lg:block bg-zinc-900 h-full w-full overflow-hidden">
-          <img className='h-[500px] rounded-xl' src="/img/logoimg.JPG" alt="" />
+          <Image className='rounded-xl' src="/img/logoimg.JPG" width={500} height={500} alt="" />
         </div>
       </div>
 

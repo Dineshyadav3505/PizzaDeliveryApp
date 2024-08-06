@@ -15,5 +15,6 @@ module.exports = {
       code: ['Encode Sans', 'sans-serif'],
     },
     plugins: [],
+    darkMode: 'class',
   }
 };
