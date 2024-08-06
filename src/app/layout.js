@@ -13,8 +13,8 @@ export default function RootLayout({children}) {
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>
-          <Layouts attribute='class'>
+        <ThemeProvider attribute="class">
+          <Layouts>
             {children}
           </Layouts>
         </ThemeProvider>
