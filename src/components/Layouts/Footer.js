@@ -24,9 +24,9 @@ const Footer = () => {
   return (
     <>
     <div className="">
-      <div className="flex font-Ubuntu font-light w-full">
+      <div className="flex flex-wrap flex-col lg:flex-row gap-16 lg:gap-0 font-Ubuntu font-light w-full">
           {/* IMAGES */}
-          <div className="min-h-56 w-full px-8">
+          <div className=" w-full px-8">
             <img className='' src="/img/png.png" alt="logo" width="100" height="100" />
           </div>
         {/* EXPLORE */}
@@ -41,7 +41,7 @@ const Footer = () => {
           </ul>
         </div>
         {/* PRODUCT */}
-        <div className="min-h-56 w-full ">
+        <div className=" w-full ">
           <h6 className='text-[10px] text-white px-5 mb-7 dark:text-zinc-700'>PRODUCT</h6>
           <ul className='flex  flex-col gap-2'>
             {PRODUCT.map((item, index) => (
@@ -52,7 +52,7 @@ const Footer = () => {
           </ul>
         </div>
         {/* FOLLOW */}
-        <div className="min-h-56 w-full">
+        <div className="w-full">
           <h6 className='text-[10px] text-white px-5 mb-7 dark:text-zinc-700'>FOLLOW US</h6>
           <ul className='flex flex-col gap-2'>
             {FOLLOW.map((item, index) => (
@@ -63,7 +63,7 @@ const Footer = () => {
           </ul>
         </div>
         {/* RESOURCES */}
-        <div className="min-h-56 w-full">
+        <div className="w-full">
           <h6 className='text-[10px] text-white px-5 mb-7 dark:text-zinc-700'>RESOURCES</h6>
           <a href="/" className='text-white text-xl font-logo capitalize px-5 py-1 dark:text-zinc-700'>the foodie cafe</a>
         </div>

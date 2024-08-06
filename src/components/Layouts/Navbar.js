@@ -13,7 +13,7 @@ const Navbar = () => {
   
   return (
     <header>
-        <div className="py-6 w-screen sticky px-5 dark:bg-slate-300 bg-[#000000] flex items-center overflow-x-hidden justify-between">
+        <div className="py-6 w-screen sticky lg:px-5 dark:bg-slate-300 bg-[#000000] flex items-center overflow-x-hidden justify-between">
           {/* Logo and Name  */}
             <Link href="/" className='flex gap-2 items-end select-none'> 
               <h1 className='text-xl font-logo text-white'>The Foodies Cafe</h1>
@@ -28,12 +28,13 @@ const Navbar = () => {
               <Link href='/contactus' className={`font-first text-sm hover:text-white ${pathname === '/contactus' ? 'text-white' : 'text-zinc-600'}`}>Contact Us</Link>
             </div>
 
-            <div className="">
+            <div className="flex gap-4 ">
               <ThemeSwitcher />
-            </div>
-            <div className="lg:flex gap-4 px-0 hidden">
-              <Button1 label="Sign In" href="/signin" img="img/signin.svg" />
-              <Button1 label="Log In"  href="/login" img="img/login.svg" bg="#7c5c13" />
+            
+              <div className="lg:flex gap-4 px-0 hidden">
+                <Button1 label="Sign In" href="/signin" img="img/signin.svg" />
+                <Button1 label="Log In"  href="/login" img="img/login.svg" bg="#7c5c13" />
+              </div>
             </div>
 
             <div className="lg:hidden">
