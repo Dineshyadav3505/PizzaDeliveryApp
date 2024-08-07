@@ -20,7 +20,7 @@ const Page = () => {
   };
 
   return (
-    <div className='flex w-full justify-center items-center px-2 py-10 lg:px-20 lg:py-16'>
+    <div className='flex w-full  bg-white text-black dark:bg-black dark:text-white justify-center items-center px-2 py-10 lg:px-20 lg:py-16'>
       <div className="rounded-xl lg:flex bg-zinc-900 w-full px-6 lg:px-10 py-8 gap-3 space-y-4">
         <div className="w-full py-16 pl-7">
           <h4 className='text-white font-first text-2xl lg:text-4xl font-light'>Create an account</h4>

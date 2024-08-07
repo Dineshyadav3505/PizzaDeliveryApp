@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Input = ({
+  divClass,
   type = 'text',
   placeholder = 'Placeholder',
   name,
@@ -9,7 +10,7 @@ const Input = ({
   register,
 }) => {
   return (
-    <div className="mb-4">
+    <div className={`mb-4 ${divClass}`}>
       <input
         type={type}
         placeholder={placeholder}
