@@ -12,7 +12,7 @@ const ThemeSwitcher = () => {
   return (
     <button
       onClick={lightmode}
-      className=" p-1 flex gap-2 w-7 h-7 border-[1px] rounded items-center"
+      className=" p-1 flex gap-2 w-7 h-7 border-[1px] border-zinc-900 dark:border-white rounded items-center"
     >
       {theme === 'light' ? (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">

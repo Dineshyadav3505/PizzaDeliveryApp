@@ -5,7 +5,7 @@ const Footer = () => {
     {lable:'Home', href:'/'},
     {lable:'Menu', href:'/menu'},
     {lable:'Cart', href:'/cart'},
-    {lable:'Contact Us', href:'/contactus'},
+    {lable:'Contact Us', href:'/contact'},
   ]
 
   const PRODUCT = [
@@ -17,9 +17,8 @@ const Footer = () => {
 
   const FOLLOW = [
     {lable:'Instagram', href:'/'},
-    {lable:'Facebook', href:'/menu'},
-    {lable:'Youtube', href:'/cart'},
-    {lable:'telegram', href:'/contactus'},
+    {lable:'Facebook', href:'/'},
+    {lable:'twitter', href:'/'},
   ]
   return (
     <>
