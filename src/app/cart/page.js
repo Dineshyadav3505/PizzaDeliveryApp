@@ -1,6 +1,7 @@
 'use client';
 import React from 'react'
 import { useState } from 'react'
+import Image from 'next/image';
 
 const page = () => {
   const [data, setData] = useState([])
@@ -31,9 +32,9 @@ const page = () => {
           <p className='text-sm text-zinc-500 font-Ubuntu font-light'>Payment powered by Splitit, Google Pay, Phone Pay.</p>
 
           <div className=" flex flex-wrap gap-3 py-3 items-center">
-            <img className='h-9 ' src="img/visa.png" alt="" />
-            <img className='h-9 ' src="img/master.png" alt="" />
-            <img className='h-6  ' src="img/googlepay.png" alt="" />
+            <Image src="/img/visa.png" className="" alt="" width='30' height='10' />
+            <Image src="/img/master.png" className="" alt="" width='30' height='10' />
+            <Image src="/img/googlepay.png" className="" alt="" width='30' height='10' />
           </div>
         </div>
       </div>
