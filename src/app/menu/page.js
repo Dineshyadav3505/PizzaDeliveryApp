@@ -7,9 +7,9 @@ const page = () => {
     name: 'Delicious Pizza',
     description: 'A tasty pizza with fresh ingredients.',
     sizes: [
-        { name: 'Small',  price: 10 },
-        { name: 'Medium', price: 20 },
-        { name: 'Large',  price: 30 }
+        { name: 'Small',  price: 100 },
+        { name: 'Medium', price: 357 },
+        { name: 'Large',  price: 390 }
     ],
     crust: [
       { name: 'Thin', price: 5 },
