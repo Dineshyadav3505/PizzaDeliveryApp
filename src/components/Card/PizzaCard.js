@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import Image from 'next/image';
 
-const MenuCard = ({ product }) => {
+const PizzaCard = ({ product }) => {
     const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
     const [selectedCrust, setSelectedCrust] = useState(product.crust[0]);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
@@ -17,22 +17,22 @@ const MenuCard = ({ product }) => {
     };
 
     return (
-        <div className=" border-[1px] border-zinc-900 dark:border-zinc-100 rounded-lg p-2 shadow-md">
-            <div className=' relative'>
+        <div className=" border-[1px] w-{256}  border-zinc-900 dark:border-zinc-100 rounded-lg p-2 shadow-md">
+            <div className=' relative flex-wrap w-64'>
                 <Image 
                     src={product.image} 
                     alt={product.name} 
-                    className="w-64 bg-red-900 object-cover rounded-md" 
+                    className="w-64 object-cover rounded-md" 
                     width={256} 
                     height={160} 
                 />
-                <p className="text-base mt-2 absolute bottom-14 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
+                <p className="text-base mt-2 absolute top-24 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
                 <h3 className="text-base font-semibold py-1">{product.name}</h3>
-                <p className="text-zinc-500 text-sm">{product.description}</p>            
+                <p className="text-zinc-500 text-sm h-16 overflow-hidden">{product.description}</p>            
             </div>
             
             <div className=" flex justify-between">
-                <div className="w-[45%]">
+                <div className="w-[38%]">
                     <label className="block mt-2 text-[12px]">Size:</label>
                     <select 
                         value={selectedSize.name} 
@@ -40,16 +40,16 @@ const MenuCard = ({ product }) => {
                             const selected = product.sizes.find(size => size.name === e.target.value);
                             setSelectedSize(selected);
                         }} 
-                        className="border outline-none text-xs rounded-md p-1  mt-2"
+                        className="border outline-none text-xs rounded-md p-1 w-full mt-2"
                     >
                         {product.sizes.map((sizeOption) => (
-                            <option key={sizeOption.name} value={sizeOption.name}>{sizeOption.name}  -₹{sizeOption.price}</option>
+                            <option key={sizeOption.name} value={sizeOption.name}>{sizeOption.name}</option>
                         ))}
                     </select>
                 </div>
                 
-                <div className="w-[47%]">
-                    <label className="block mt-2 text-[12px]">Choose Crust:</label>
+                <div className="w-[60%]">
+                    <label className="block mt-2 text-[12px]">Crust:</label>
                     <select 
                         value={selectedCrust.name} 
                         onChange={(e) => {
@@ -59,10 +59,22 @@ const MenuCard = ({ product }) => {
                         className="border outline-none text-xs rounded-md p-1 w-full mt-2"
                     >
                         {product.crust.map((crustOption) => (
-                            <option key={crustOption.name} value={crustOption.name}>{crustOption.name}  -₹{crustOption.price}</option>
+                            <option key={crustOption.name} value={crustOption.name}>{crustOption.name}</option>
                         ))}
                     </select>
                 </div>
+            </div>
+            <div className="mt-2">
+                <label className="block text-[12px]">Quantity:</label>
+                <select 
+                    value={selectedQuantity} 
+                    onChange={(e) => setSelectedQuantity(Number(e.target.value))} 
+                    className="border outline-none text-xs rounded-md p-1 w-full mt-2"
+                >
+                    {product.quantity.map((quantityOption) => (
+                        <option key={quantityOption} value={quantityOption}>{quantityOption}</option>
+                    ))}
+                </select>
             </div>
 
             <div className="mt-3">
@@ -80,4 +92,4 @@ const MenuCard = ({ product }) => {
     );
 };
 
-export default MenuCard
+export default PizzaCard;
