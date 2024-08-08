@@ -1,6 +1,7 @@
 import MenuCard from '@/components/Card/PizzaCard'
 import React from 'react'
 import BargerCard from '@/components/Card/BurgerCard'
+import BeveragesCard from '@/components/Card/ BeveragesCard';
 
 const page = () => {
   const sampleProduct = {
@@ -28,6 +29,18 @@ const page = () => {
     price: 100,  
     quantity: [1, 2, 3, 4, 5], // Quantity options
   };
+  const sampleProduct3 = {
+    image: '/img/tea.webp',
+    name: 'Delicious Burger',
+    description: 'A tasty burger with fresh ingredients. It is a very delicious burger with a lot of cheese and toppings on it.',
+    price: 100,  
+    sizes: [
+      { name: 'Regular',  price: 100 },
+      { name: 'Medium', price: 357 },
+      { name: 'Large',  price: 390 }
+    ],
+    quantity: [1, 2, 3, 4, 5], // Quantity options
+  };
 
   return (
     <div className='lg:p-10 font-Ubuntu w-screen bg-white text-black dark:bg-black dark:text-white'>
@@ -39,13 +52,16 @@ const page = () => {
           <MenuCard product={sampleProduct}/>
           <MenuCard product={sampleProduct}/>
         </div>
-        <h1 className='text-xl py-1'>All BURGER</h1>
+        <h1 className='text-xl py-1'>BURGER</h1>
         <div className="flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">
           <BargerCard product={sampleProduct2}/>
           <BargerCard product={sampleProduct2}/>
           <BargerCard product={sampleProduct2}/>
           <BargerCard product={sampleProduct2}/>
-
+        </div>
+        <h1 className='text-xl py-1'>BEVERAGES</h1>
+        <div className="flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">
+          <BeveragesCard product={sampleProduct3}/>
         </div>
       </div>
 
