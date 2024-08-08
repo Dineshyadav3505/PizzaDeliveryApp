@@ -10,7 +10,12 @@ const reducer = (state, action) => {
                     price: action.price,
                     quantity: action.quantity,
                     image: action.image,
+                    sizes: action.sizes,
+                    crust: action.crust,
+                    
+
                 }];
+                console.log(state)
 
         case "REMOVE":
             return [ ...state, "action"];

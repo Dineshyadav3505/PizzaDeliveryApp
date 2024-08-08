@@ -13,7 +13,7 @@ const PizzaCard = ({ product }) => {
     const totalPrice = ((selectedSize.price + selectedCrust.price) * selectedQuantity)+"/-";
 
     const handleAddToCart = () => {
-        alert(`Added to cart:\n${selectedQuantity} x ${product.name} (${selectedSize.name} - ${selectedCrust.name}) - $${totalPrice}`);
+        // alert(`Added to cart:\n${selectedQuantity} x ${product.name} (${selectedSize.name} - ${selectedCrust.name}) - $${totalPrice}`);
         
         dispatch({
             type:"ADD",

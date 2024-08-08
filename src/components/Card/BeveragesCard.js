@@ -1,9 +1,11 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { CartContext } from '@/utils/ContextReducer';
 
 const BeveragesCard = ({ product }) => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+    const {state, dispatch} = useContext(CartContext);
 
     // Calculate total price based on selected size and quantity
     const totalPrice = selectedSize.price * selectedQuantity;
@@ -18,6 +20,7 @@ const BeveragesCard = ({ product }) => {
             quantity: selectedQuantity,
             image: product.image,
         })
+        console.log(state)
     };
 
     return (

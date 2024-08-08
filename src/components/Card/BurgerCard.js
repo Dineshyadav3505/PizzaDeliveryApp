@@ -1,8 +1,10 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { CartContext } from '@/utils/ContextReducer';
 
 const BurgerCard = ({ product }) => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const {state, dispatch} = useContext(CartContext);
 
     // Calculate total price based on quantity
     const totalPrice = product.price * selectedQuantity;
