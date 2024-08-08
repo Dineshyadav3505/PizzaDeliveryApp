@@ -1,9 +1,23 @@
+'use client';
 import MenuCard from '@/components/Card/PizzaCard'
-import React from 'react'
+import React, { useRef } from 'react'
 import BargerCard from '@/components/Card/BurgerCard'
-import BeveragesCard from '@/components/Card/ BeveragesCard';
+import BeveragesCard from '@/components/Card/BeveragesCard';
+import SandwichCard from '@/components/Card/SandwichCard';
 
 const page = () => {
+
+  const pizzaRef = useRef(null);
+  const burgerRef = useRef(null);
+  const sandwichRef = useRef(null);
+  const beveragesRef = useRef(null);
+
+  const scrollToSection = (ref) => {
+    if (ref.current) {
+        ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const sampleProduct = {
     image: 'https://as2.ftcdn.net/v2/jpg/06/07/04/41/1000_F_607044129_mlPAREptH5szQjdJ8cku2tC718zawrxu.webp',
     name: 'Delicious Pizza',
@@ -29,7 +43,18 @@ const page = () => {
     price: 100,  
     quantity: [1, 2, 3, 4, 5], // Quantity options
   };
+
+
   const sampleProduct3 = {
+    image: '/img/sandwich.avif',
+    name: 'Delicious Sandwich',
+    description: 'A tasty burger with fresh ingredients. It is a very delicious burger with a lot of cheese and toppings on it.',
+    price: 100,  
+    quantity: [1, 2, 3, 4, 5], // Quantity options
+  };
+
+
+  const sampleProduct4 = {
     image: '/img/tea.webp',
     name: 'Delicious Burger',
     description: 'A tasty burger with fresh ingredients. It is a very delicious burger with a lot of cheese and toppings on it.',
@@ -44,24 +69,49 @@ const page = () => {
 
   return (
     <div className='lg:p-10 font-Ubuntu w-screen bg-white text-black dark:bg-black dark:text-white'>
-      <div className="flex flex-col flex-wrap">
-        <h1 className='text-xl py-1'>All PIZZA</h1>
-        <div className="flex w-full mx-auto flex-wrap px-auto border-t-[1px] mb-10">
+      <div className="flex underline mb-5">
+        <button onClick={() => scrollToSection(pizzaRef)} className="mx-2 p-2 rounded">
+            PIZZA
+        </button>
+        <button onClick={() => scrollToSection(burgerRef)} className="mx-2 p-2 rounded">
+            BURGER
+        </button>
+        <button onClick={() => scrollToSection(sandwichRef)} className="mx-2 p-2 rounded">
+            SANDWICH
+        </button>
+        <button onClick={() => scrollToSection(beveragesRef)} className="mx-2 p-2 rounded">
+            BEVERAGES
+        </button>
+      </div>
+
+      <div className="flex flex-col flex-wrap px-5">
+        <h1 className='text-xl py-1' ref={pizzaRef} >PIZZA</h1>
+        <div className="PIZZA flex w-full mx-auto flex-wrap px-auto border-t-[1px] mb-10">
           <MenuCard product={sampleProduct}/>
           <MenuCard product={sampleProduct}/>
           <MenuCard product={sampleProduct}/>
           <MenuCard product={sampleProduct}/>
         </div>
-        <h1 className='text-xl py-1'>BURGER</h1>
-        <div className="flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">
+        <h1 className='text-xl py-1' ref={burgerRef} >BURGER</h1>
+        <div className="BURGER flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">
           <BargerCard product={sampleProduct2}/>
           <BargerCard product={sampleProduct2}/>
           <BargerCard product={sampleProduct2}/>
           <BargerCard product={sampleProduct2}/>
         </div>
-        <h1 className='text-xl py-1'>BEVERAGES</h1>
-        <div className="flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">
-          <BeveragesCard product={sampleProduct3}/>
+        <h1 className='text-xl py-1' ref={sandwichRef} >SANDWICH</h1>
+        <div className="BURGER flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">
+          <SandwichCard product={sampleProduct3}/>
+          <SandwichCard product={sampleProduct3}/>
+          <SandwichCard product={sampleProduct3}/>
+          <SandwichCard product={sampleProduct3}/>
+        </div>
+        <h1 className='text-xl py-1' ref={beveragesRef} >BEVERAGES</h1>
+        <div className="BEVERAGES flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">
+          <BeveragesCard product={sampleProduct4}/>
+          <BeveragesCard product={sampleProduct4}/>
+          <BeveragesCard product={sampleProduct4}/>
+          <BeveragesCard product={sampleProduct4}/>
         </div>
       </div>
 

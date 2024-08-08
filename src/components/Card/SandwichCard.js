@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 
-const BurgerCard = ({ product }) => {
+const SandwichCard = ({ product }) => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
 
     // Calculate total price based on quantity
@@ -52,4 +52,4 @@ const BurgerCard = ({ product }) => {
     );
 };
 
-export default BurgerCard;
+export default SandwichCard;

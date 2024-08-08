@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 const BeveragesCard = ({ product }) => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
