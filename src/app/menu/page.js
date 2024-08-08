@@ -6,7 +6,7 @@ const page = () => {
   const sampleProduct = {
     image: 'https://as2.ftcdn.net/v2/jpg/06/07/04/41/1000_F_607044129_mlPAREptH5szQjdJ8cku2tC718zawrxu.webp',
     name: 'Delicious Pizza',
-    description: 'A tasty pizza with fresh ingredients. its a very delicious pizza with a lot of cheese and toppings on it.',  
+    description: 'A tasty pizza with fresh ingredients. hfk ikljsdf h dsf  lb slb fajsh  its a very delicious pizza with a lot of cheese and toppings on it.',  
     sizes: [
         { name: 'Regular',  price: 100 },
         { name: 'Medium', price: 357 },
@@ -31,10 +31,22 @@ const page = () => {
 
   return (
     <div className='lg:p-10 font-Ubuntu w-screen bg-white text-black dark:bg-black dark:text-white'>
-      <h1 className='text-center'>All product</h1>
-      <div className="flex gap-4">
-        <MenuCard product={sampleProduct}/>
-        <BargerCard product={sampleProduct2}/>
+      <div className="flex flex-col flex-wrap">
+        <h1 className='text-xl py-1'>All PIZZA</h1>
+        <div className="flex w-full mx-auto flex-wrap px-auto border-t-[1px] mb-10">
+          <MenuCard product={sampleProduct}/>
+          <MenuCard product={sampleProduct}/>
+          <MenuCard product={sampleProduct}/>
+          <MenuCard product={sampleProduct}/>
+        </div>
+        <h1 className='text-xl py-1'>All BURGER</h1>
+        <div className="flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">
+          <BargerCard product={sampleProduct2}/>
+          <BargerCard product={sampleProduct2}/>
+          <BargerCard product={sampleProduct2}/>
+          <BargerCard product={sampleProduct2}/>
+
+        </div>
       </div>
 
     </div>
