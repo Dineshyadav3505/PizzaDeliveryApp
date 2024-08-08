@@ -1,6 +1,7 @@
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Layouts from "@/components/Layouts/Layouts"; 
+import { CartProvider } from "@/utils/ContextReducer";
 
 
 export const metadata = {
@@ -14,9 +15,11 @@ export default function RootLayout({children}) {
     <html lang="en">
       <body>
         <ThemeProvider attribute="class">
-          <Layouts>
-            {children}
-          </Layouts>
+          <CartProvider>
+            <Layouts>
+              {children}
+            </Layouts>
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

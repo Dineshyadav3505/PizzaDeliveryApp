@@ -10,6 +10,7 @@ const SandwichCard = ({ product }) => {
     const handleAddToCart = () => {
         alert(`Added to cart:\n${selectedQuantity} x ${product.name} - ₹${totalPrice}`);
         // Here you would typically update the cart state or context
+        
     };
 
     return (
