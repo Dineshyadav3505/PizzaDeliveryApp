@@ -1,18 +1,29 @@
 'use client';
-import React from 'react'
-import { useState } from 'react'
+import React,{ useContext, useState } from 'react'
+import { CartContext } from '@/utils/ContextReducer';
+
 
 const PizzaCard = ({ product }) => {
     const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
     const [selectedCrust, setSelectedCrust] = useState(product.crust[0]);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const {state, dispatch} = useContext(CartContext);
     
     // Calculate total price based on selected size, crust, and quantity
     const totalPrice = ((selectedSize.price + selectedCrust.price) * selectedQuantity)+"/-";
 
     const handleAddToCart = () => {
         alert(`Added to cart:\n${selectedQuantity} x ${product.name} (${selectedSize.name} - ${selectedCrust.name}) - $${totalPrice}`);
-        // Here you would typically update the cart state or context
+        
+        dispatch({
+            type:"ADD",
+            name: product.name,
+            sizes: selectedSize,
+            crust: selectedCrust,
+            price: totalPrice,
+            quantity: selectedQuantity,
+            image: product.image,
+        })
     };
 
     return (
