@@ -8,8 +8,14 @@ const BurgerCard = ({ product }) => {
     const totalPrice = product.price * selectedQuantity;
 
     const handleAddToCart = () => {
-        alert(`Added to cart:\n${selectedQuantity} x ${product.name} - ₹${totalPrice}`);
-        // Here you would typically update the cart state or context
+        // alert(`Added to cart:\n${selectedQuantity} x ${product.name} - ₹${totalPrice}`);
+        dispatch({
+            type:"ADD",
+            name: product.name,
+            price: totalPrice,
+            quantity: selectedQuantity,
+            image: product.image,
+        })
     };
 
     return (
