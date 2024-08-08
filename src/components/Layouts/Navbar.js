@@ -1,16 +1,17 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Button1 from '../Button/Button1'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import ThemeSwitcher from '../Button/Them';
+import { CartContext } from '@/utils/ContextReducer';
 
 const Navbar = () => {
 
   const pathname = usePathname();
   const [hover, setHover] = useState(false);
-
+  const {state} = useContext(CartContext)
   
   return (
     <header>
@@ -24,7 +25,7 @@ const Navbar = () => {
               <Link href='/'          className={`font-first text-sm ${pathname === '/'     ? 'font-bold' : 'font-light'}`}>Home</Link>
               <Link href='/menu'      className={`font-first text-sm ${pathname === '/menu' ? 'font-bold' : 'font-light'}`}>Menu</Link>
               <Link href='/cart'      className={`font-first text-sm ${pathname === '/cart' ? 'font-bold' : 'font-light'} relative`}>Cart 
-                <span className={`absolute -top-2 -right-4 py-1 px-1 rounded-full text-xs ${pathname === '/cart' ? 'font-bold' : 'font-light'} flex justify-center items-center`}>2</span>
+                <span className={`absolute -top-2 -right-4 py-1 px-1 rounded-full text-xs ${pathname === '/cart' ? 'font-bold' : 'font-light'} flex justify-center items-center`}>{state.length}</span>
               </Link>
               <Link href='/contact' className={`font-first text-sm ${pathname === '/contact' ? 'font-bold' : 'font-light'}`}>Contact Us</Link>
             </div>

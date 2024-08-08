@@ -4,7 +4,13 @@ import { createContext, useMemo, useReducer } from "react";
 const reducer = (state, action) => {
     switch (action.type) {
         case "ADD":
-            return [ ...state, "action"];
+            return [ ...state, 
+                {
+                    name: action.name,
+                    price: action.price,
+                    quantity: action.quantity,
+                    image: action.image,
+                }];
 
         case "REMOVE":
             return [ ...state, "action"];
