@@ -33,7 +33,7 @@ const MainImg = () => {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
         >
-            <video className='w-full h-full' src="/img/video.mp4" muted autoPlay loop ></video>
+            <video className='w-full h-full' src="/img/video.mov" muted autoPlay loop ></video>
             {isHovering && (
                 <div
                     ref={cursorRef}
