@@ -2,6 +2,7 @@
 import React, { useContext, useState } from 'react';
 import Image from 'next/image';
 import { CartContext } from '@/utils/ContextReducer';
+import Link from 'next/link';
 
 const Page = () => {
   const {state} = useContext(CartContext)
@@ -77,7 +78,7 @@ const Page = () => {
               <div className="py-10 flex flex-col justify-center items-center">
                 <p className='text-xl text-center text-zinc-500'>No Item</p>
                 <p className='text-sm text-center text-zinc-500'>Add Something to the Cart</p>
-                <a className='text-sm text-center text-blue-500 block py-3' href="/menu">Add Item</a>
+                <Link className='text-sm text-center text-blue-500 block py-3' href="/menu">Add Item</Link>
               </div>
             )}
           </div>

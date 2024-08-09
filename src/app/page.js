@@ -1,3 +1,5 @@
+import BookingCart from '@/components/Card/BookingCart'
+import MainImg from '@/components/Layouts/MainImg'
 import React from 'react'
 
 const page = () => {
@@ -14,11 +16,11 @@ const page = () => {
   return (
     <>
     <div className='bg-white text-black dark:bg-black dark:text-white'>
-      <div className="min-h-screen bg-slate-400 cursor-">
-        
+      <div className="min-h-screen cursor-none">
+        <MainImg/>
       </div>
-      <div className="">
-        
+      <div className=" px-5 lg:px-10 flex justify-center items-center flex-wrap my-16">
+        <BookingCart/>
       </div>
 
       <div className=" px-5 lg:px-10 space-y-1 pb-10">
