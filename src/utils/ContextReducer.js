@@ -14,11 +14,37 @@ const reducer = (state, action) => {
                     crust: action.crust,
 
                 }];
-                console.log(state)
+        case "INCREMENT":
+            return [ ...state, 
+                {
+                    quantity: action.quantity + 1,
+                }
+            ]
 
-        case "REMOVE":
-            return [ ...state, "action"];
-        
+        case "DECREMENT":
+            return [ ...state, 
+                {
+                    quantity: action.quantity - 1,
+                }
+            ]
+
+        case "CLEAR":
+            return [ ...state, 
+                {
+                    quantity: 0,
+                }
+            ]
+
+        case "UPDATE":
+            return state.map(item => {
+                if(item.name === action.name){
+                    return {
+                       ...item,
+                        quantity: action.quantity
+                    }
+                }
+                return item
+            })
     
         default:
             console.log("Invalid action type")
