@@ -15,6 +15,7 @@ const Page = () => {
   const removeItem = (index) => {
     console.log("Remove")
   }
+  console.log(state)
 
 
   return (

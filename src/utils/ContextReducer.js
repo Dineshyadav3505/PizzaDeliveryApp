@@ -7,6 +7,7 @@ const reducer = (state, action) => {
             return [ ...state, 
                 {
                     name: action.name,
+                    tempid: action.tempid,
                     price: action.price,
                     quantity: action.quantity,
                     image: action.image,
@@ -36,15 +37,15 @@ const reducer = (state, action) => {
             ]
 
         case "UPDATE":
-            return state.map(item => {
-                if(item.name === action.name){
-                    return {
-                       ...item,
-                        quantity: action.quantity
-                    }
+            let arr = [ ...state];
+            arr.find((food, index) =>{
+                if(food.tempid === action.tempid){
+                    console.log(food)
+                    // arr[index] = {...food, quantity:parseInt(action.quantity)+ parents(food.quantity), 
+                    //     price:parseInt(action.price)+ parents(food.price)}
                 }
-                return item
             })
+            return arr;
     
         default:
             console.log("Invalid action type")

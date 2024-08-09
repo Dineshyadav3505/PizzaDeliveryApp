@@ -15,6 +15,7 @@ const BeveragesCard = ({ product }) => {
         dispatch({
             type:"ADD",
             name: product.name,
+            tempid: product.name+selectedSize,
             sizes: selectedSize,
             price: totalPrice,
             quantity: selectedQuantity,

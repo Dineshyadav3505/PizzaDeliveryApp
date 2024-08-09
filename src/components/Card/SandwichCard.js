@@ -14,6 +14,7 @@ const SandwichCard = ({ product }) => {
         dispatch({
             type:"ADD",
             name: product.name,
+            tempid: product.name,
             price: totalPrice,
             quantity: selectedQuantity,
             image: product.image,

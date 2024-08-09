@@ -13,17 +13,36 @@ const PizzaCard = ({ product }) => {
     const totalPrice = ((selectedSize.price + selectedCrust.price) * selectedQuantity)+"/-";
 
     const handleAddToCart = () => {
-        // alert(`Added to cart:\n${selectedQuantity} x ${product.name} (${selectedSize.name} - ${selectedCrust.name}) - $${totalPrice}`);
         
-        dispatch({
-            type:"ADD",
-            name: product.name,
-            sizes: selectedSize,
-            crust: selectedCrust,
-            price: totalPrice,
-            quantity: selectedQuantity,
-            image: product.image,
-        })
+        const existingItem = state.find(item => item.tempid === product.name+selectedSize+selectedCrust);
+        
+        if(!existingItem) {
+            dispatch({
+                type:"ADD",
+                name: product.name,
+                tempid: product.name+selectedSize+selectedCrust,
+                sizes: selectedSize,
+                crust: selectedCrust,
+                price: totalPrice,
+                quantity: selectedQuantity,
+                image: product.image,
+            })
+
+            return;
+        }
+
+        if(existingItem){
+            dispatch({
+                type:"UPDATE",
+                name: product.name,
+                tempid: product.name+selectedSize+selectedCrust,
+                sizes: selectedSize,
+                crust: selectedCrust,
+                price: totalPrice,
+                quantity: selectedQuantity,
+                image: product.image,
+            })
+        }
     };
 
     return (
