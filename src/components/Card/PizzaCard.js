@@ -28,13 +28,15 @@ const PizzaCard = ({ product }) => {
 
     return (
         <div className=" border-[1px] mx-auto my-5 w-full md:w-60 md:h-[410px] lg:w-72 h-[470px] lg:h-[420px] border-zinc-900 dark:border-zinc-100 rounded-lg p-2 shadow-md">
-            <div className=' relative flex-wrap w-full lg:w-64'>
-                <img
-                    src={product.image} 
-                    alt={product.name} 
-                    className="object-cover w-full rounded-md" 
-                />
-                <p className="text-base mt-2 absolute top-24 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
+            <div className='flex flex-wrap w-full lg:w-64'>
+                <div className=" relative h-48 lg:h-36 w-full">
+                    <img
+                        src={product.image} 
+                        alt={product.name} 
+                        className="object-cover h-full w-full rounded-md" 
+                    />
+                    <p className="text-base mt-2 absolute bottom-2 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
+                </div>
                 <h3 className="text-base font-semibold py-1">{product.name}</h3>
                 <p className="text-zinc-500 text-sm h-16 overflow-hidden">{product.description}</p>            
             </div>

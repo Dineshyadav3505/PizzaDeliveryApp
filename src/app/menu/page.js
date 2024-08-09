@@ -1,5 +1,5 @@
 'use client';
-import MenuCard from '@/components/Card/PizzaCard'
+import PizzaCard from '@/components/Card/PizzaCard'
 import React, { useRef } from 'react'
 import BargerCard from '@/components/Card/BurgerCard'
 import BeveragesCard from '@/components/Card/BeveragesCard';
@@ -87,10 +87,10 @@ const page = () => {
       <div className="flex flex-col flex-wrap px-5">
         <h1 className='text-xl py-1' ref={pizzaRef} >PIZZA</h1>
         <div className="PIZZA flex w-full mx-auto flex-wrap px-auto border-t-[1px] mb-10">
-          <MenuCard product={sampleProduct}/>
-          <MenuCard product={sampleProduct}/>
-          <MenuCard product={sampleProduct}/>
-          <MenuCard product={sampleProduct}/>
+          <PizzaCard product={sampleProduct}/>
+          <PizzaCard product={sampleProduct}/>
+          <PizzaCard product={sampleProduct}/>
+          <PizzaCard product={sampleProduct}/>
         </div>
         <h1 className='text-xl py-1' ref={burgerRef} >BURGER</h1>
         <div className="BURGER flex w-full mx-auto gap-auto flex-wrap px-auto border-t-[1px] mb-10">

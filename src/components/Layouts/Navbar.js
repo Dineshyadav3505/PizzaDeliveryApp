@@ -51,7 +51,7 @@ const Navbar = () => {
             </div>
         </div>
 
-        <div className=" fixed w-full z-50 bg-slate-900 lg:hidden bottom-0 left-0">
+        <div className=" fixed w-full z-50  lg:hidden bottom-0 left-0 bg-white text-black dark:bg-black dark:text-white border-t-[.1px]">
           <div className="flex px-2 justify-around items-center py-4">
             <Link href='/' className=' flex flex-col justify-center items-center font-first text-sm'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

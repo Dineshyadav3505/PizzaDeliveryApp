@@ -12,7 +12,6 @@ const reducer = (state, action) => {
                     image: action.image,
                     sizes: action.sizes,
                     crust: action.crust,
-                    
 
                 }];
                 console.log(state)
