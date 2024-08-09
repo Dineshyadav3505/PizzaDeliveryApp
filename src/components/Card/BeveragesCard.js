@@ -8,7 +8,7 @@ const BeveragesCard = ({ product }) => {
     const {state, dispatch} = useContext(CartContext);
 
     // Calculate total price based on selected size and quantity
-    const totalPrice = selectedSize.price * selectedQuantity;
+    const totalPrice = selectedSize.price * selectedQuantity+"/-";
 
     const handleAddToCart = () => {
         // alert(`Added to cart:\n${selectedQuantity} x ${product.name} (${selectedSize.name} - ₹${totalPrice})`);

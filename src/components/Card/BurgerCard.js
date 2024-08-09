@@ -7,10 +7,9 @@ const BurgerCard = ({ product }) => {
     const {state, dispatch} = useContext(CartContext);
 
     // Calculate total price based on quantity
-    const totalPrice = product.price * selectedQuantity;
+    const totalPrice = product.price * selectedQuantity+"/-";
 
     const handleAddToCart = () => {
-        // alert(`Added to cart:\n${selectedQuantity} x ${product.name} - ₹${totalPrice}`);
         dispatch({
             type:"ADD",
             name: product.name,

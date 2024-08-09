@@ -7,7 +7,7 @@ const SandwichCard = ({ product }) => {
     const {state, dispatch} = useContext(CartContext);
 
     // Calculate total price based on quantity
-    const totalPrice = product.price * selectedQuantity;
+    const totalPrice = product.price * selectedQuantity+"/-";
 
     const handleAddToCart = () => {
 
