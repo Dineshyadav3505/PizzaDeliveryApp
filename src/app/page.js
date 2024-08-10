@@ -1,5 +1,5 @@
-import BookingCart from '@/components/Card/BookingCart'
-import MainImg from '@/components/Layouts/MainImg'
+import BookingCart from '../components/Card/BookingCart';
+import MainImg from '../components/Card/MainImg'
 import React from 'react'
 
 const page = () => {

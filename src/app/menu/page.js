@@ -1,9 +1,9 @@
 'use client';
-import PizzaCard from '@/components/Card/PizzaCard'
+import PizzaCard from '../../components/Card/PizzaCard';
 import React, { useRef } from 'react'
-import BargerCard from '@/components/Card/BurgerCard'
-import BeveragesCard from '@/components/Card/BeveragesCard';
-import SandwichCard from '@/components/Card/SandwichCard';
+import BargerCard from '../../components/Card/BurgerCard'
+import BeveragesCard from '../../components/Card/BeveragesCard';
+import SandwichCard from '../../components/Card/SandwichCard';
 
 const page = () => {
 

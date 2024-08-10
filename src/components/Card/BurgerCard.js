@@ -1,6 +1,6 @@
 'use client';
 import React, { useContext, useState } from 'react';
-import { CartContext } from '@/utils/ContextReducer';
+import { CartContext } from '../../utils/ContextReducer';
 
 const BurgerCard = ({ product }) => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);

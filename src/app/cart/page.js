@@ -1,7 +1,7 @@
 'use client';
 import React, { useContext, useState } from 'react';
 import Image from 'next/image';
-import { CartContext } from '@/utils/ContextReducer';
+import { CartContext } from '../../utils/ContextReducer';
 import Link from 'next/link';
 
 const Page = () => {

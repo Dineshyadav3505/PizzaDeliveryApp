@@ -1,5 +1,5 @@
 'use client';
-import { CartContext } from '@/utils/ContextReducer';
+import { CartContext } from '../../utils/ContextReducer';
 import React, { useContext, useState } from 'react';
 
 const SandwichCard = ({ product }) => {

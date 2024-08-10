@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import ThemeSwitcher from '../Button/Them';
-import { CartContext } from '@/utils/ContextReducer';
+import { CartContext } from '../../utils/ContextReducer';
 
 const Navbar = () => {
 

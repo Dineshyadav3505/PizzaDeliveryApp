@@ -1,7 +1,7 @@
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
-import Layouts from "@/components/Layouts/Layouts"; 
-import { CartProvider } from "@/utils/ContextReducer";
+import Layouts from "../components/Layouts/Layouts"; 
+import { CartProvider } from "../utils/ContextReducer";
 
 
 export const metadata = {
