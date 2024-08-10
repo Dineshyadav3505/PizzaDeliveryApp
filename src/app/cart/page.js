@@ -18,7 +18,6 @@ const Page = () => {
   }
   console.log(state)
 
-
   return (
     <div className='lg:p-10 font-Ubuntu w-screen bg-white text-black dark:bg-black dark:text-white'>
       <div className="p-5 lg:flex w-full">

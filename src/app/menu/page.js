@@ -1,6 +1,6 @@
 'use client';
 import PizzaCard from '../../components/Card/PizzaCard';
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import BargerCard from '../../components/Card/BurgerCard'
 import BeveragesCard from '../../components/Card/BeveragesCard';
 import SandwichCard from '../../components/Card/SandwichCard';
@@ -11,12 +11,32 @@ const page = () => {
   const burgerRef = useRef(null);
   const sandwichRef = useRef(null);
   const beveragesRef = useRef(null);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
 
   const scrollToSection = (ref) => {
     if (ref.current) {
         ref.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/hello'); // Ensure the correct path
+        console.log(response,response);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const sampleProduct = {
     image: 'https://as2.ftcdn.net/v2/jpg/06/07/04/41/1000_F_607044129_mlPAREptH5szQjdJ8cku2tC718zawrxu.webp',
