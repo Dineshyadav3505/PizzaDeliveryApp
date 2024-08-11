@@ -15,6 +15,9 @@ const OTPPage = () => {
         const phoneNumber = localStorage.getItem('phoneNumber');
         const lastname = localStorage.getItem('lastname');
         const firstname = localStorage.getItem('firstname');
+        if (!phoneNumber ||!lastname ||!firstname) {
+            router.push('/signin'); // Redirect to the home page if data is not available
+        }
         console.log(phoneNumber, lastname, firstname);
     }, []);
 
@@ -42,6 +45,7 @@ const OTPPage = () => {
         // Simulate OTP validation (replace this with your actual validation logic)
         if (otpString === "123456") { // Example of a valid OTP
             setError(false);
+            router.push('/menu')
             // Handle successful OTP submission (e.g., redirect)
             // router.push('/next-page'); // Example redirection
         } else {

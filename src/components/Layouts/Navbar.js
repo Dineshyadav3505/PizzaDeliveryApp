@@ -42,9 +42,10 @@ const Navbar = () => {
                 <span className='block w-9 overflow-hidden rounded-full'>
                   <Image 
                     src="/img/admin.JPG" // Local path or external URL
-                    alt=""
+                    alt="Logo"
                     width={500} // Required for layout stability
                     height={300} // Required for layout stability
+                    priority={true} // Add this line
                   />
                 </span>
               </div>

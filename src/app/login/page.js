@@ -3,20 +3,22 @@
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Input from '../../components/Button/Input'; // Adjust the path as necessary
+import Input from '../../components/Button/Input';  // Adjust the path as necessary
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [ checked, setChecked ] = React.useState(false);
+  const router = useRouter();
+
   const sumbit = () => {
     setChecked(!checked);
   }
 
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
-    setChecked(false);
+    localStorage.setItem('phoneNumber', data.phone);
+    router.push('login/otp');
   };
 
   return (
@@ -29,20 +31,35 @@ const Page = () => {
           </h4>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="w-full  space-y-5 ">
-                <Input 
-                  divClass='mt-10'
-                  name="Phone number" 
-                  type="number"
-                  required={true} 
-                  register={register}
-                  placeholder="Phone number"
-                  className="w-full mb-6"
-                  style={{
-                    WebkitAppearance: 'none',
-                    MozAppearance: 'textfield',
-                  }}
-                />
+            <div className="w-full  space-y-10 mt-10 ">
+              <Input
+                label="Phone Number"
+                name="phone"
+                type="tel"
+                placeholder="Enter your phone number"
+                required={true}
+                register={register}
+                validationRules={{
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: 'Phone number must be numeric',
+                  },
+                  minLength: {
+                    value: 10,
+                    message: 'Phone number must be at least 10 digits',
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: 'Phone number cannot exceed 10 digits',
+                  },
+                }}
+                error={errors.phone}
+                className="w-full"
+                style={{
+                  WebkitAppearance: 'none',
+                  MozAppearance: 'textfield',
+                }}
+              />
               <button type="submit" className="bg-zinc-800 w-full block hover:text-white  hover:bg-black text-[#a9a8a8] py-1 px-4 rounded">
                 Submit
               </button>
