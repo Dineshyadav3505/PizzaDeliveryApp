@@ -1,5 +1,4 @@
 import mongoose,{Schema} from "mongoose";
-import dbConnect from "../../lib/dbConnect";
 
 const userSchema = new Schema({
     username: { 

@@ -1,6 +1,6 @@
 import dbConnect from "../../lib/dbConnect.js";
 import { NextResponse } from "next/server";
-import Burger from "../../../model/Burger.model.js"; 
+import Sandwich from "../../../model/Sandwich.model.js"; 
 
 
 export async function POST(req, res, next) {
@@ -23,7 +23,7 @@ export async function POST(req, res, next) {
     await dbConnect();
 
     try {
-      const burger = await Burger.create({
+      const sandwich = await Sandwich.create({
           img:img,
           name:name,
           type:type,
@@ -31,11 +31,11 @@ export async function POST(req, res, next) {
           price:price,
       });
 
-      await burger.save();
-      return NextResponse.json({ message: "Burger created successfully", burger });
+      await sandwich.save();
+      return NextResponse.json({ message: "Sandwich created successfully", sandwich });
   } catch (error) {
       console.error(error);
-      return NextResponse.json({ error: "Failed to create burger" });
+      return NextResponse.json({ error: "Failed to create Sandwich" });
   }
 
 }
@@ -46,12 +46,12 @@ export async function GET(req, res, next) {
   await dbConnect();
 
   try {
-    const allburger = await Burger.find({});
+    const allsandwich = await Sandwich.find({});
     
-    return NextResponse.json({ message: "Burders retrieved successfully", allburger });
+    return NextResponse.json({ message: "Sandwich retrieved successfully", allsandwich});
   } catch (error) {
-    console.error("Error fetching burder:", error);
-    return NextResponse.json({ error: "Failed to retrieve burger" }, { status: 500 });
+    console.error("Error fetching sandwich:", error);
+    return NextResponse.json({ error: "Failed to retrieve sandwich" }, { status: 500 });
   }
 }
 
@@ -68,7 +68,7 @@ export async function PUT(req, res, next){
     await dbConnect();
 
     try {
-      const burger = await Burger.findByIdAndUpdate(id, {
+      const sandwich = await Sandwich.findByIdAndUpdate(id, {
           img:img,
           name:name,
           type:type,
@@ -76,14 +76,14 @@ export async function PUT(req, res, next){
           price:price,
       }, {new: true});
 
-      if(!burger){
-        return NextResponse.status(404).json({error: "Burger not found"});
+      if(!sandwich){
+        return NextResponse.status(404).json({error: "Sandwich not found"});
       }
 
-      return NextResponse.json({ message: "Burder updated successfully", burger });
+      return NextResponse.json({ message: "Sandwich updated successfully", sandwich });
   } catch (error) {
       console.error(error);
-      return NextResponse.json({ error: "Failed to update burder" });
+      return NextResponse.json({ error: "Failed to update Sandwich" });
   }
 }
 
@@ -94,15 +94,15 @@ export async function DELETE(req, res, next){
   await dbConnect();
 
   try {
-    const burger = await Burger.findByIdAndDelete(id);
+    const sandwich = await Sandwich.findByIdAndDelete(id);
 
-    if(!burger){
-      return NextResponse.json({error: "burger not found"});
+    if(!sandwich){
+      return NextResponse.json({error: "Sandwich not found"});
     }
 
-    return NextResponse.json({ message: "burger deleted successfully" });
+    return NextResponse.json({ message: "Sandwich deleted successfully" });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Failed to delete burger" });
+    return NextResponse.json({ error: "Failed to delete Sandwich" });
   }
 }
