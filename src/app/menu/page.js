@@ -24,7 +24,9 @@ const page = () => {
     const fetchData = async () => {
       try {
         const response = await fetch('api/menu'); // Ensure the correct path
-        console.log(response,response);
+        const response2 = await fetch('api/users'); // Ensure the correct path
+        console.log(response);
+        console.log(response2);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
