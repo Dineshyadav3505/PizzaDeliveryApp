@@ -12,7 +12,7 @@ const pizzaSchema = new mongoose.Schema({
   ],
   crust: [
     {
-      name: { type: String, required: true },
+      crust: { type: String, required: true },
       value: { type: Number, required: true },
     },
   ],

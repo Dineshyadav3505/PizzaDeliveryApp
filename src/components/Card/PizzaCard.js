@@ -1,58 +1,60 @@
 'use client';
-import React,{ useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../../utils/ContextReducer';
-
+import Image from 'next/image';
 
 const PizzaCard = ({ product }) => {
-    const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-    const [selectedCrust, setSelectedCrust] = useState(product.crust[0]);
+    console.log(product);
+    // Initialize states with fallback values
+    const [selectedSize, setSelectedSize] = useState(product.price[0] || { value: 0 }); // Default to an object with value 0
+    const [selectedCrust, setSelectedCrust] = useState(product.crust[0] || { value: 0 }); // Default to an object with value 0
     const [selectedQuantity, setSelectedQuantity] = useState(1);
-    const {state, dispatch} = useContext(CartContext);
+    const { state, dispatch } = useContext(CartContext);
     
     // Calculate total price based on selected size, crust, and quantity
-    const totalPrice = ((selectedSize.price + selectedCrust.price) * selectedQuantity)+"/-";
+    const totalPrice = (selectedSize.value + selectedCrust.value) * selectedQuantity + "/-";
 
     const handleAddToCart = () => {
+        const existingItem = state.find(item => item.tempid === product.name + selectedSize.size + selectedCrust.crust);
         
-        const existingItem = state.find(item => item.tempid === product.name+selectedSize+selectedCrust);
-        
-        if(!existingItem) {
+        if (!existingItem) {
             dispatch({
-                type:"ADD",
+                type: "ADD",
                 name: product.name,
-                tempid: product.name+selectedSize+selectedCrust,
+                tempid: product.name + selectedSize.size + selectedCrust.crust,
                 sizes: selectedSize,
                 crust: selectedCrust,
                 price: totalPrice,
                 quantity: selectedQuantity,
-                image: product.image,
-            })
-
+                image: product.img, // Use img from the new data structure
+            });
             return;
         }
 
-        if(existingItem){
+        if (existingItem) {
             dispatch({
-                type:"UPDATE",
+                type: "UPDATE",
                 name: product.name,
-                tempid: product.name+selectedSize+selectedCrust,
+                tempid: product.name + selectedSize.size + selectedCrust.crust,
                 sizes: selectedSize,
                 crust: selectedCrust,
                 price: totalPrice,
                 quantity: selectedQuantity,
-                image: product.image,
-            })
+                image: product.img,
+            });
         }
     };
 
     return (
-        <div className=" border-[1px] mx-auto my-5 w-full md:w-60 md:h-[410px] lg:w-72 h-[470px] lg:h-[420px] border-zinc-900 dark:border-zinc-100 rounded-lg p-2 shadow-md">
-            <div className='flex flex-wrap w-full lg:w-64'>
-                <div className=" relative h-48 lg:h-36 w-full">
-                    <img
-                        src={product.image} 
+        <div className="border-[1px] mx-auto my-5 w-full md:w-60 md:h-[450px] lg:w-72 h-[470px] lg:h-[470px] border-zinc-900 dark:border-zinc-100 rounded-lg p-2 shadow-md">
+            <div className='relative flex-wrap'>
+                <div className="h-48 w-full relative rounded-md overflow-hidden">
+                    <Image 
+                        src={product.img} 
                         alt={product.name} 
-                        className="object-cover h-full w-full rounded-md" 
+                        className="object-cover w-full h-full bg-red-100 "
+                        width={271}
+                        height={194}
                     />
                     <p className="text-base mt-2 absolute bottom-2 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
                 </div>
@@ -60,19 +62,19 @@ const PizzaCard = ({ product }) => {
                 <p className="text-zinc-500 text-sm h-16 overflow-hidden">{product.description}</p>            
             </div>
             
-            <div className=" flex justify-between">
+            <div className="flex justify-between">
                 <div className="w-[38%]">
                     <label className="block mt-2 text-[12px]">Size:</label>
                     <select 
-                        value={selectedSize.name} 
+                        value={selectedSize.size} 
                         onChange={(e) => {
-                            const selected = product.sizes.find(size => size.name === e.target.value);
-                            setSelectedSize(selected);
+                            const selected = product.price.find(size => size.size === e.target.value);
+                            setSelectedSize(selected || { value: 0 }); // Fallback to prevent undefined
                         }} 
                         className="border outline-none text-xs rounded-md p-1 w-full mt-2"
                     >
-                        {product.sizes.map((sizeOption) => (
-                            <option key={sizeOption.name} value={sizeOption.name}>{sizeOption.name}</option>
+                        {product.price.map((sizeOption) => (
+                            <option key={sizeOption._id} value={sizeOption.size}>{sizeOption.size}</option>
                         ))}
                     </select>
                 </div>
@@ -80,15 +82,15 @@ const PizzaCard = ({ product }) => {
                 <div className="w-[60%]">
                     <label className="block mt-2 text-[12px]">Crust:</label>
                     <select 
-                        value={selectedCrust.name} 
+                        value={selectedCrust.crust} 
                         onChange={(e) => {
-                            const selected = product.crust.find(crust => crust.name === e.target.value);
-                            setSelectedCrust(selected);
+                            const selected = product.crust.find(crust => crust.crust === e.target.value);
+                            setSelectedCrust(selected || { value: 0 }); // Fallback to prevent undefined
                         }} 
                         className="border outline-none text-xs rounded-md p-1 w-full mt-2"
                     >
                         {product.crust.map((crustOption) => (
-                            <option key={crustOption.name} value={crustOption.name}>{crustOption.name}</option>
+                            <option key={crustOption._id} value={crustOption.crust}>{crustOption.crust}</option>
                         ))}
                     </select>
                 </div>
@@ -100,7 +102,7 @@ const PizzaCard = ({ product }) => {
                     onChange={(e) => setSelectedQuantity(Number(e.target.value))} 
                     className="border outline-none text-xs rounded-md p-1 w-full mt-2"
                 >
-                    {product.quantity.map((quantityOption) => (
+                    {[1, 2, 3, 4, 5].map((quantityOption) => (
                         <option key={quantityOption} value={quantityOption}>{quantityOption}</option>
                     ))}
                 </select>
@@ -113,10 +115,7 @@ const PizzaCard = ({ product }) => {
                 >
                     Add to Cart
                 </button>
-                
             </div>
-            
-            
         </div>
     );
 };
