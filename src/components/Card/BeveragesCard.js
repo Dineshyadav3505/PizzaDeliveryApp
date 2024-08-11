@@ -1,37 +1,44 @@
 'use client';
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../../utils/ContextReducer';
+import Image from 'next/image';
 
 const BeveragesCard = ({ product }) => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
-    const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-    const {state, dispatch} = useContext(CartContext);
+    const [selectedSize, setSelectedSize] = useState(product.price[0]); // Initialize with the first size
+    const { state, dispatch } = useContext(CartContext);
+    const quantityOptions = [1, 2, 3, 4, 5];
 
     // Calculate total price based on selected size and quantity
-    const totalPrice = selectedSize.price * selectedQuantity+"/-";
+    const totalPrice = selectedSize ? selectedSize.value * selectedQuantity + "/-" : "N/A";
 
     const handleAddToCart = () => {
-        // alert(`Added to cart:\n${selectedQuantity} x ${product.name} (${selectedSize.name} - ₹${totalPrice})`);
-        dispatch({
-            type:"ADD",
-            name: product.name,
-            tempid: product.name+selectedSize,
-            sizes: selectedSize,
-            price: totalPrice,
-            quantity: selectedQuantity,
-            image: product.image,
-        })
-        console.log(state)
+        if (selectedSize) {
+            dispatch({
+                type: "ADD",
+                name: product.name,
+                tempid: product.name + selectedSize.size,
+                sizes: selectedSize,
+                price: selectedSize.value, // Store the base price
+                quantity: selectedQuantity,
+                image: product.img, // Use img from the product data
+            });
+            console.log(state);
+        } else {
+            alert("Please select a size before adding to the cart.");
+        }
     };
 
     return (
         <div className="border w-full mx-auto my-5 md:w-60 md:h-[420px] lg:w-72 h-[425px] lg:h-[420px] border-zinc-900 dark:border-zinc-100 rounded-lg p-2 shadow-md">
             <div className='relative flex-wrap'>
                 <div className="h-48 w-full relative rounded-md overflow-hidden">
-                    <img
-                        src={product.image} 
+                    <Image 
+                        src={product.img} 
                         alt={product.name} 
-                        className="h-full w-full object-cover rounded-md" 
+                        className="object-cover w-full h-full bg-red-100 "
+                        width={271}
+                        height={194}
                     />
                     <p className="text-base mt-2 absolute bottom-2 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
                 </div>
@@ -43,15 +50,15 @@ const BeveragesCard = ({ product }) => {
                 <div className="w-[60%]">
                     <label className="block mt-2 text-[12px]">Size:</label>
                     <select 
-                        value={selectedSize.name} 
+                        value={selectedSize.size} 
                         onChange={(e) => {
-                            const selected = product.sizes.find(size => size.name === e.target.value);
+                            const selected = product.price.find(size => size.size === e.target.value);
                             setSelectedSize(selected);
                         }} 
                         className="border outline-none text-xs rounded-md p-1 w-full mt-2"
                     >
-                        {product.sizes.map((sizeOption) => (
-                            <option key={sizeOption.name} value={sizeOption.name}>{sizeOption.name}</option>
+                        {product.price.map((sizeOption) => (
+                            <option key={sizeOption._id} value={sizeOption.size}>{sizeOption.size}</option>
                         ))}
                     </select>
                 </div>
@@ -63,7 +70,7 @@ const BeveragesCard = ({ product }) => {
                         onChange={(e) => setSelectedQuantity(Number(e.target.value))} 
                         className="border outline-none text-xs rounded-md p-1 w-full mt-2"
                     >
-                        {product.quantity.map((quantityOption) => (
+                        {quantityOptions.map((quantityOption) => (
                             <option key={quantityOption} value={quantityOption}>{quantityOption}</option>
                         ))}
                     </select>
