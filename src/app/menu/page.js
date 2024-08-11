@@ -23,7 +23,7 @@ const page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/hello'); // Ensure the correct path
+        const response = await fetch('api/menu'); // Ensure the correct path
         console.log(response,response);
         if (!response.ok) {
           throw new Error('Network response was not ok');
