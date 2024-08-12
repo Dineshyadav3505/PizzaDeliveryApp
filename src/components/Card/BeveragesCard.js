@@ -4,6 +4,7 @@ import { CartContext } from '../../utils/ContextReducer';
 import Image from 'next/image';
 
 const BeveragesCard = ({ product }) => {
+
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState(product.price[0]); // Initialize with the first size
     const { state, dispatch } = useContext(CartContext);
@@ -16,14 +17,14 @@ const BeveragesCard = ({ product }) => {
         if (selectedSize) {
             dispatch({
                 type: "ADD",
+                id: product._id,
                 name: product.name,
-                tempid: product.name + selectedSize.size,
+                sizeId: selectedSize._id,
                 sizes: selectedSize,
-                price: selectedSize.value, // Store the base price
+                price: totalPrice, 
                 quantity: selectedQuantity,
-                image: product.img, // Use img from the product data
+                image: product.img, 
             });
-            console.log(state);
         } else {
             alert("Please select a size before adding to the cart.");
         }
@@ -36,14 +37,14 @@ const BeveragesCard = ({ product }) => {
                     <Image 
                         src={product.img} 
                         alt={product.name} 
-                        className="object-cover w-full h-full bg-red-100 "
+                        className="object-cover w-full h-full"
                         width={271}
                         height={194}
                     />
                     <p className="text-base mt-2 absolute bottom-2 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
                 </div>
-                <h3 className="text-base font-semibold py-1">{product.name}</h3>
-                <p className="text-zinc-500 text-sm h-16 overflow-hidden">{product.description}</p>            
+                <h3 className="text-base font-semibold capitalize py-1">{product.name}</h3>
+                <p className="text-zinc-500 text-sm capitalize h-16 overflow-hidden">{product.description}</p>            
             </div>
 
             <div className="flex justify-between">

@@ -54,12 +54,7 @@ const Page = () => {
     fetchData();
   }, []);
 
-  // // Log the data to check if it is being set correctly
-  // console.log(pizzaData);
-  // console.log(burgerData);
-  // console.log(sandwichData);
-  // console.log(beveragesData);
-
+  
   return (
     <div className='lg:p-10 font-Ubuntu w-screen bg-white text-black dark:bg-black dark:text-white'>
       <div className="flex underline mb-5">

@@ -14,11 +14,11 @@ const BurgerCard = ({ product }) => {
     const handleAddToCart = () => {
         dispatch({
             type: "ADD",
+            id: product._id,
             name: product.name,
-            tempid: product.name, // You might want to use a unique identifier
-            price: product.price, // Store the base price
+            price: totalPrice, 
             quantity: selectedQuantity,
-            image: product.image,
+            image: product.img,
         });
     };
 
@@ -29,7 +29,7 @@ const BurgerCard = ({ product }) => {
                     <Image 
                         src={product.img} 
                         alt={product.name} 
-                        className="object-cover w-full h-full bg-red-100 "
+                        className="object-cover w-full h-full"
                         width={271}
                         height={194}
                     />

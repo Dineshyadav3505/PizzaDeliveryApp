@@ -30,14 +30,21 @@ const Page = () => {
                 <div className=" relative">
                   <div key={index} className="my-1  py-2 flex gap-5  w-full">
                     <div className="h-36 w-44 lg:h-44 flex justify-center items-center shadow-md rounded-md border-zinc-500 border-[0.6px]">
-                      <img className='h-full w-full object-contain' src={item.image} alt="product image" />
+                      <Image 
+                        src={item.image}  
+                        alt={item.name} 
+                        className='h-full  object-contain'
+                        width={150}
+                        height={160}
+                        objectFit="contain"
+                      />
                     </div>
                     {/* Name Size Crust */}
                     <div className="flex flex-col lg:flex-row justify-between w-[60%] ">
                       <div className="flex lg:h-44  lg:w-full flex-col lg:space-y-2">
                         <h6 className='py-2 w-72'>{item.name}</h6>
-                        {item.sizes && <p className='text-sm'>Size: {item.sizes.name}</p>}
-                        {item.crust && <p className='text-sm'>Crust: {item.crust.name}</p>}
+                        {item.sizes && <p className='text-sm'>Size: {item.sizes.size}</p>}
+                        {item.crust && <p className='text-sm'>Crust: {item.crust.crust}</p>}
                       </div>
 
                       <div className="flex lg:h-44 w-full lg:flex-col py-3 space-y-2">

@@ -4,7 +4,7 @@ import { CartContext } from '../../utils/ContextReducer';
 import Image from 'next/image';
 
 const PizzaCard = ({ product }) => {
-    console.log(product);
+ 
     // Initialize states with fallback values
     const [selectedSize, setSelectedSize] = useState(product.price[0] || { value: 0 }); // Default to an object with value 0
     const [selectedCrust, setSelectedCrust] = useState(product.crust[0] || { value: 0 }); // Default to an object with value 0
@@ -20,9 +20,11 @@ const PizzaCard = ({ product }) => {
         if (!existingItem) {
             dispatch({
                 type: "ADD",
+                id: product._id,
                 name: product.name,
-                tempid: product.name + selectedSize.size + selectedCrust.crust,
+                sizeId: selectedSize._id,
                 sizes: selectedSize,
+                crustId: selectedCrust._id,
                 crust: selectedCrust,
                 price: totalPrice,
                 quantity: selectedQuantity,
@@ -52,14 +54,14 @@ const PizzaCard = ({ product }) => {
                     <Image 
                         src={product.img} 
                         alt={product.name} 
-                        className="object-cover w-full h-full bg-red-100 "
+                        className="object-cover w-full h-full"
                         width={271}
                         height={194}
                     />
                     <p className="text-base mt-2 absolute bottom-2 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
                 </div>
                 <h3 className="text-base font-semibold py-1">{product.name}</h3>
-                <p className="text-zinc-500 text-sm h-16 overflow-hidden">{product.description}</p>            
+                <p className="text-zinc-500 capitalize text-sm h-16 overflow-hidden">{product.description}</p>            
             </div>
             
             <div className="flex justify-between">
@@ -71,7 +73,7 @@ const PizzaCard = ({ product }) => {
                             const selected = product.price.find(size => size.size === e.target.value);
                             setSelectedSize(selected || { value: 0 }); // Fallback to prevent undefined
                         }} 
-                        className="border outline-none text-xs rounded-md p-1 w-full mt-2"
+                        className="border capitalize outline-none text-xs rounded-md p-1 w-full mt-2"
                     >
                         {product.price.map((sizeOption) => (
                             <option key={sizeOption._id} value={sizeOption.size}>{sizeOption.size}</option>

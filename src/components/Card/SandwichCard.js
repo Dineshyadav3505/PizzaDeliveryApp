@@ -15,11 +15,11 @@ const SandwichCard = ({ product }) => {
 
         dispatch({
             type:"ADD",
+            id: product._id,
             name: product.name,
-            tempid: product.name,
             price: totalPrice,
             quantity: selectedQuantity,
-            image: product.image,
+            image: product.img,
         })
         
     };
@@ -31,14 +31,14 @@ const SandwichCard = ({ product }) => {
                     <Image 
                         src={product.img} 
                         alt={product.name} 
-                        className="object-cover w-full h-full bg-red-100 "
+                        className="object-cover w-full h-full"
                         width={271}
                         height={194}
                     />
                     <p className="text-base mt-2 absolute bottom-2 left-1 text-white bg-black px-2 py-1">₹ {totalPrice}</p>
                 </div>
-                <h3 className="text-base font-semibold py-1">{product.name}</h3>
-                <p className="text-zinc-500 text-sm h-16 overflow-hidden">{product.description}</p>            
+                <h3 className="text-base capitalize font-semibold py-1">{product.name}</h3>
+                <p className="text-zinc-500 capitalize text-sm h-16 overflow-hidden">{product.description}</p>            
             </div>
 
             <div className="mt-3 ">

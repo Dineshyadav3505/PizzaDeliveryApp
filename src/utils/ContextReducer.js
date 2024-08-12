@@ -6,12 +6,14 @@ const reducer = (state, action) => {
         case "ADD":
             return [ ...state, 
                 {
+                    id: action.id,
                     name: action.name,
-                    tempid: action.tempid,
                     price: action.price,
                     quantity: action.quantity,
                     image: action.image,
+                    sizeId: action.sizeId,
                     sizes: action.sizes,
+                    crustId: action.crustId,
                     crust: action.crust,
 
                 }];
