@@ -64,9 +64,7 @@ const reducer = (state, action) => {
         case "REMOVE":
             return state.filter((food) => !(food.id === action.id && food.sizeId === action.sizeId && food.crustId === action.crustId));
 
-        default:
-            console.log("Invalid action type");
-            return state; // Return the current state for invalid action types
+  
     }
 };
 

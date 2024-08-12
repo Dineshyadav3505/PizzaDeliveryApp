@@ -1,22 +1,50 @@
 'use client';
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '../../components/Button/Input'; // Adjust the path as necessary
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import { auth } from '../../../firebaseConfig'; // Import the auth instance
 
 const Page = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const router = useRouter();
+
+  // Setup reCAPTCHA
+  useEffect(() => {
+    const appVerifier = new RecaptchaVerifier('recaptcha-container', {
+      size: 'invisible',
+      callback: (response) => {
+        // reCAPTCHA solved - will proceed with submit
+      },
+      'expired-callback': () => {
+        // Handle expired reCAPTCHA
+      }
+    }, auth);
+
+    return () => {
+      appVerifier.clear(); // Cleanup on unmount
+    };
+  }, [auth]);
 
   // Handle form submission
   const onSubmit = async (data) => {
     localStorage.setItem('phoneNumber', data.phone);
     localStorage.setItem('lastname', data.lastname);
     localStorage.setItem('firstname', data.firstname);
-    router.push('login/otp');
+
+    try {
+      const appVerifier = new RecaptchaVerifier('recaptcha-container', {}, auth);
+      const confirmationResult = await signInWithPhoneNumber(auth, data.phone, appVerifier);
+      localStorage.setItem('confirmationResult', JSON.stringify(confirmationResult));
+      router.push('login/otp');
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+      alert("Failed to send verification code. Please try again.");
+    }
   };
 
   return (
@@ -110,6 +138,8 @@ const Page = () => {
             </div>
           </form>
 
+          <div id="recaptcha-container"></div> {/* Add reCAPTCHA container */}
+
           <div className="pt-6 text-center">
             <Link href="/terms" className="text-blue-600 underline text-xs ml-1">Terms of Service</Link>
             <span className="text-white text-xs ml-1">and</span>
@@ -117,7 +147,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="rounded-xl hidden lg:block  h-full w-full overflow-hidden">
+        <div className="rounded-xl hidden lg:block h-full w-full overflow-hidden">
           <Image className='rounded-xl' src="/img/logoimg.JPG" width={500} height={500} alt="Logo" />
         </div>
       </div>
