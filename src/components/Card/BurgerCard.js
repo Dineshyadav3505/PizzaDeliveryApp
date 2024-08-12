@@ -11,15 +11,34 @@ const BurgerCard = ({ product }) => {
     // Calculate total price based on quantity
     const totalPrice = product.price * selectedQuantity + "/-";
 
-    const handleAddToCart = () => {
-        dispatch({
-            type: "ADD",
-            id: product._id,
-            name: product.name,
-            price: totalPrice, 
-            quantity: selectedQuantity,
-            image: product.img,
-        });
+    const handleAddToCart = async () => {
+
+        const existingItem = state.find((item) => 
+            item.id === product._id 
+        );
+
+        if(existingItem){
+            console.log("Updating existing item in cart");
+            dispatch({
+                type: "UPDATE",
+                id: product._id,
+                name: product.name,
+                price: totalPrice,
+                quantity: selectedQuantity,
+                image: product.img,
+            });
+
+        }else{
+            console.log("Adding new item to cart");
+            dispatch({
+                type:"ADD",
+                id: product._id,
+                name: product.name,
+                price: totalPrice,
+                quantity: selectedQuantity,
+                image: product.img,
+            })
+        }        
     };
 
     return (

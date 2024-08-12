@@ -13,20 +13,37 @@ const BeveragesCard = ({ product }) => {
     // Calculate total price based on selected size and quantity
     const totalPrice = selectedSize ? selectedSize.value * selectedQuantity + "/-" : "N/A";
 
-    const handleAddToCart = () => {
-        if (selectedSize) {
-            dispatch({
-                type: "ADD",
-                id: product._id,
-                name: product.name,
-                sizeId: selectedSize._id,
-                sizes: selectedSize,
-                price: totalPrice, 
-                quantity: selectedQuantity,
-                image: product.img, 
-            });
+    const handleAddToCart = async () => {
+
+        const existingItem = state.find((item) => 
+            item.id === product._id && 
+            item.sizeId === selectedSize._id
+        );
+      
+        if (existingItem) {
+          console.log("Updating existing item in cart");
+          dispatch({
+            type: "UPDATE",
+            id: product._id,
+            name: product.name,
+            sizeId: selectedSize._id,
+            sizes: selectedSize,
+            price: totalPrice,
+            quantity: selectedQuantity,
+            image: product.img,
+          });
         } else {
-            alert("Please select a size before adding to the cart.");
+          console.log("Adding new item to cart");
+          dispatch({
+            type: "ADD",
+            id: product._id,
+            name: product.name,
+            sizeId: selectedSize._id,
+            sizes: selectedSize,
+            price: totalPrice,
+            quantity: selectedQuantity,
+            image: product.img,
+          });
         }
     };
 

@@ -1,10 +1,13 @@
 'use client';
 import { createContext, useMemo, useReducer } from "react";
 
+
+// Reducer function to manage cart state
 const reducer = (state, action) => {
     switch (action.type) {
         case "ADD":
-            return [ ...state, 
+            return [
+                ...state,
                 {
                     id: action.id,
                     name: action.name,
@@ -15,59 +18,71 @@ const reducer = (state, action) => {
                     sizes: action.sizes,
                     crustId: action.crustId,
                     crust: action.crust,
-
-                }];
-        case "INCREMENT":
-            return [ ...state, 
-                {
-                    quantity: action.quantity + 1,
                 }
-            ]
-
-        case "DECREMENT":
-            return [ ...state, 
-                {
-                    quantity: action.quantity - 1,
-                }
-            ]
-
-        case "CLEAR":
-            return [ ...state, 
-                {
-                    quantity: 0,
-                }
-            ]
+            ];
 
         case "UPDATE":
-            let arr = [ ...state];
-            arr.find((food, index) =>{
-                if(food.tempid === action.tempid){
-                    console.log(food)
-                    // arr[index] = {...food, quantity:parseInt(action.quantity)+ parents(food.quantity), 
-                    //     price:parseInt(action.price)+ parents(food.price)}
+            return state.map((food) => {
+                if (food.id === action.id && food.sizeId === action.sizeId && food.crustId === action.crustId) {
+                    return {
+                        ...food,
+                        quantity: parseInt(action.quantity) + parseInt(food.quantity),
+                        price: parseInt(action.price) + parseInt(food.price) + "/-"
+                    };
                 }
-            })
-            return arr;
-    
+                return food;
+            });
+
+        case "INCREMENT":
+            return state.map((food) => {
+                if (food.id === action.id && food.sizeId === action.sizeId && food.crustId === action.crustId) {
+                    return {
+                        ...food,
+                        quantity: food.quantity + 1,
+                        price: (parseInt(food.price) + parseInt(action.price)) + "/-"
+                    };
+                }
+                return food;
+            });
+
+            case "DECREMENT":
+                return state.map((food) => {
+                    if (food.id === action.id && food.sizeId === action.sizeId && food.crustId === action.crustId) {
+                        if(food.quantity === 1){
+                            console.log("Item quantity cannot be less than 1");
+                        }else{
+                            return {
+                                ...food,
+                                quantity: food.quantity - 1, // Decrease quantity without restriction
+                                price:  (parseInt(food.price) - parseInt(action.price)) + "/-"
+                            };
+                        }
+                    }
+                    return food; 
+                });
+
+        case "REMOVE":
+            return state.filter((food) => !(food.id === action.id && food.sizeId === action.sizeId && food.crustId === action.crustId));
+
         default:
-            console.log("Invalid action type")
+            console.log("Invalid action type");
+            return state; // Return the current state for invalid action types
     }
+};
 
-}
-
+// Create CartContext
 export const CartContext = createContext();
 
-export const CartProvider = ({children}) => {
-
-    const [state, dispatch] = useReducer(reducer,[])
-    const contexValue = useMemo(()=>{
-        return { state, dispatch }
-    },[state,dispatch])
+// CartProvider component
+export const CartProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(reducer, []);
+    const contextValue = useMemo(() => {
+        return { state, dispatch };
+    }, [state, dispatch]);
 
     return (
-        <CartContext.Provider value={{ state, dispatch }}>
+        <CartContext.Provider value={contextValue}>
             {children}
         </CartContext.Provider>
-    )
-
+    );
 };

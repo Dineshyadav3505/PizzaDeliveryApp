@@ -11,18 +11,36 @@ const SandwichCard = ({ product }) => {
     // Calculate total price based on quantity
     const totalPrice = product.price * selectedQuantity+"/-";
 
-    const handleAddToCart = () => {
+    const handleAddToCart = async () => {
 
-        dispatch({
-            type:"ADD",
-            id: product._id,
-            name: product.name,
-            price: totalPrice,
-            quantity: selectedQuantity,
-            image: product.img,
-        })
-        
+        const existingItem = state.find((item) => 
+            item.id === product._id 
+        );
+
+        if(existingItem){
+            console.log("Updating existing item in cart");
+            dispatch({
+                type: "UPDATE",
+                id: product._id,
+                name: product.name,
+                price: totalPrice,
+                quantity: selectedQuantity,
+                image: product.img,
+            });
+
+        }else{
+            console.log("Adding new item to cart");
+            dispatch({
+                type:"ADD",
+                id: product._id,
+                name: product.name,
+                price: totalPrice,
+                quantity: selectedQuantity,
+                image: product.img,
+            })
+        }        
     };
+    
 
     return (
         <div className="border w-full mx-auto my-5 md:w-60 md:h-[420px] lg:w-72 h-[425px] lg:h-[420px] border-zinc-900 dark:border-zinc-100 rounded-lg p-2 shadow-md">

@@ -14,36 +14,42 @@ const PizzaCard = ({ product }) => {
     // Calculate total price based on selected size, crust, and quantity
     const totalPrice = (selectedSize.value + selectedCrust.value) * selectedQuantity + "/-";
 
-    const handleAddToCart = () => {
-        const existingItem = state.find(item => item.tempid === product.name + selectedSize.size + selectedCrust.crust);
-        
-        if (!existingItem) {
-            dispatch({
-                type: "ADD",
-                id: product._id,
-                name: product.name,
-                sizeId: selectedSize._id,
-                sizes: selectedSize,
-                crustId: selectedCrust._id,
-                crust: selectedCrust,
-                price: totalPrice,
-                quantity: selectedQuantity,
-                image: product.img, // Use img from the new data structure
-            });
-            return;
-        }
+    const handleAddToCart = async () => {
 
+        const existingItem = state.find((item) => 
+            item.id === product._id && 
+            item.sizeId === selectedSize._id && 
+            item.crustId === selectedCrust._id
+        );
+      
         if (existingItem) {
-            dispatch({
-                type: "UPDATE",
-                name: product.name,
-                tempid: product.name + selectedSize.size + selectedCrust.crust,
-                sizes: selectedSize,
-                crust: selectedCrust,
-                price: totalPrice,
-                quantity: selectedQuantity,
-                image: product.img,
-            });
+          console.log("Updating existing item in cart");
+          dispatch({
+            type: "UPDATE",
+            id: product._id,
+            name: product.name,
+            sizeId: selectedSize._id,
+            sizes: selectedSize,
+            crustId: selectedCrust._id,
+            crust: selectedCrust,
+            price: totalPrice,
+            quantity: selectedQuantity,
+            image: product.img,
+          });
+        } else {
+          console.log("Adding new item to cart");
+          dispatch({
+            type: "ADD",
+            id: product._id,
+            name: product.name,
+            sizeId: selectedSize._id,
+            sizes: selectedSize,
+            crustId: selectedCrust._id,
+            crust: selectedCrust,
+            price: totalPrice,
+            quantity: selectedQuantity,
+            image: product.img,
+          });
         }
     };
 

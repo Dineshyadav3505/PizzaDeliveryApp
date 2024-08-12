@@ -39,7 +39,6 @@ const Page = () => {
         const sandwichData = await sandwichResponse.json();
         const beveragesData = await beveragesResponse.json();
 
-        // console.log(pizzaData, burgerData, sandwichData, beveragesData);
 
         // Extract the data from the response using the correct keys
         setPizzaData(Array.isArray(pizzaData.allPizza) ? pizzaData.allPizza : []);
@@ -57,7 +56,7 @@ const Page = () => {
   
   return (
     <div className='lg:p-10 font-Ubuntu w-screen bg-white text-black dark:bg-black dark:text-white'>
-      <div className="flex underline mb-5">
+      <div className="flex underline mb-5 flex-wrap">
         <button onClick={() => scrollToSection(pizzaRef)} className="mx-2 p-2 rounded">
           PIZZA
         </button>
