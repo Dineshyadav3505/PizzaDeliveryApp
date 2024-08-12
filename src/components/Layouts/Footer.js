@@ -5,20 +5,18 @@ const Footer = () => {
     {lable:'Home', href:'/'},
     {lable:'Menu', href:'/menu'},
     {lable:'Cart', href:'/cart'},
-    {lable:'Contact Us', href:'/contact'},
   ]
 
   const PRODUCT = [
-    {lable:'Pizza', href:'/'},
-    {lable:'Burger', href:'/'},
-    {lable:'Pasta', href:'/'},
-    {lable:'Sandwich', href:'/'},
+    {lable:'About Us', href:'/about'},
+    {lable:'Privacy Policy', href:'/privacy'},
+    {lable:'Terms and Conditions', href:'/terms&conditions'},
   ]
 
   const FOLLOW = [
-    {lable:'Instagram', href:'/'},
-    {lable:'Facebook', href:'/'},
     {lable:'twitter', href:'/'},
+    {lable:'Facebook', href:'/'},
+    {lable:'Instagram', href:'/'},
   ]
   return (
     <>
