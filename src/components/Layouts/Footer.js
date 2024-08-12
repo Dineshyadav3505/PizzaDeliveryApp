@@ -10,7 +10,7 @@ const Footer = () => {
   const PRODUCT = [
     {lable:'About Us', href:'/about'},
     {lable:'Privacy Policy', href:'/privacy'},
-    {lable:'Terms and Conditions', href:'/terms&conditions'},
+    {lable:'Terms and Conditions', href:'/terms' },
   ]
 
   const FOLLOW = [
