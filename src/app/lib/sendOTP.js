@@ -5,3 +5,4 @@ export function generateOTP() {
     return otp.toString(); // Convert to string if needed
 }
 
+ 
