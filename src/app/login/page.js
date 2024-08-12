@@ -1,89 +1,14 @@
-'use client';
+import React from 'react'
+import PhoneAuth from '../../components/PhoneAuth'
 
-import Link from 'next/link';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import Input from '../../components/Button/Input';  // Adjust the path as necessary
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-
-const Page = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const [ checked, setChecked ] = React.useState(false);
-  const router = useRouter();
-
-  const sumbit = () => {
-    setChecked(!checked);
-  }
-
-  const onSubmit = (data) => {
-    localStorage.setItem('phoneNumber', data.phone);
-    router.push('login/otp');
-  };
-
+const page = () => {
   return (
-    <div className='flex w-full justify-center  bg-white text-black dark:bg-black dark:text-white items-center px-2 py-10 lg:px-20 lg:py-16'>
-      <div className="rounded-xl lg:flex bg-zinc-900 w-full px-6 lg:px-10 py-8 gap-3 space-y-4">
-        <div className="w-full py-16 pl-7">
-          <h4 className='text-white font-first text-2xl lg:text-4xl font-light'>LogIn account</h4>
-          <h4 className='text-white font-first text-xs mt-4 font-light'>
-            Don't have an account? <Link href="/signin" className='text-blue-600 underline'>Signin</Link>
-          </h4>
-
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="w-full  space-y-10 mt-10 ">
-              <Input
-                label="Phone Number"
-                name="phone"
-                type="tel"
-                placeholder="Enter your phone number"
-                required={true}
-                register={register}
-                validationRules={{
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: 'Phone number must be numeric',
-                  },
-                  minLength: {
-                    value: 10,
-                    message: 'Phone number must be at least 10 digits',
-                  },
-                  maxLength: {
-                    value: 10,
-                    message: 'Phone number cannot exceed 10 digits',
-                  },
-                }}
-                error={errors.phone}
-                className="w-full"
-                style={{
-                  WebkitAppearance: 'none',
-                  MozAppearance: 'textfield',
-                }}
-              />
-              <button type="submit" className="bg-zinc-800 w-full block hover:text-white  hover:bg-black text-[#a9a8a8] py-1 px-4 rounded">
-                Submit
-              </button>
-              
-
-            </div>
-          </form>
-
-          <div className="pt-6 text-center">
-            <Link href="/terms" className="text-blue-600 underline text-xs ml-1">Terms of Service </Link>
-            <span className="text-white text-xs ml-1">and</span>
-            <Link href="/privacy" className="text-blue-600 underline text-xs ml-1">Privacy Policy</Link>
-          </div>
-
-        </div>
-
-        <div className="rounded-xl hidden lg:block bg-zinc-900 h-full w-full overflow-hidden">
-          <Image className='rounded-xl' src="/img/logoimg.JPG" width={500} height={500} alt="" />
-        </div>
-      </div>
-
-
+    <div>
+        <h1>Pizza Delivery - Phone Authentication</h1>
+            <PhoneAuth />
     </div>
-  );
-};
+    
+  )
+}
 
-export default Page;
+export default page
