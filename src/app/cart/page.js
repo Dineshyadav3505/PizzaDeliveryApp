@@ -77,7 +77,7 @@ const Page = () => {
                           <div className="border-[.5px] px-1 flex justify-center items-center gap-3">
                             <span 
                                 onClick={() => decrement(item)} 
-                                className={`h-4 w-4 flex justify-center items-center ${item.quantity === 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                                className={`h-4 w-4 flex justify-center items-center ${item.quantity === 1 ? 'text-transparent' : 'cursor-pointer'}`}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-3">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
